@@ -1,92 +1,39 @@
-import React, { useState } from 'react';
-import { View, Button, Image, Text, StyleSheet, Alert } from 'react-native';
-import * as ImagePicker from 'react-native-image-picker';
-import { check, PERMISSIONS, RESULTS } from 'react-native-permissions';
-
-import Colors from '../constants/Colors';
-
-const ImgPicker = props => {
-  const [pickedImage, setPickedImage] = useState();
-
-  const verifyPermissions = async () => {
-    check(PERMISSIONS.IOS.CAMERA)
-      .then(result => {
-        switch (result) {
-          case RESULTS.UNAVAILABLE:
-            console.log(
-              'This feature is not available (on this device / in this context)',
-            );
-            break;
-          case RESULTS.DENIED:
-            console.log(
-              'The permission has not been requested / is denied but requestable',
-            );
-            break;
-          case RESULTS.GRANTED:
-            console.log('The permission is granted');
-            break;
-          case RESULTS.BLOCKED:
-            console.log('The permission is denied and not requestable anymore');
-            break;
-        }
-      })
-      .catch(error => {
-        // …
-        console.log(error);
-      });
-  };
-
-  const takeImageHandler = async () => {
-    const hasPermission = await verifyPermissions();
-    if (!hasPermission) {
-      return;
-    }
-    const image = await ImagePicker.launchCameraAsync({
-      allowsEditing: true,
-      aspect: [16, 9],
-      quality: 0.5
-    });
-
-    setPickedImage(image.uri);
-    props.onImageTaken(image.uri);
-  };
-
-  return (
-    <View style={styles.imagePicker}>
-      <View style={styles.imagePreview}>
-        {!pickedImage ? (
-          <Text>No image picked yet.</Text>
-        ) : (
-            <Image style={styles.image} source={{ uri: pickedImage }} />
-          )}
-      </View>
-      <Button
-        title="Take Image"
-        color={Colors.primary}
-        onPress={takeImageHandler}
-      />
-    </View>
-  );
-};
-
-const styles = StyleSheet.create({
-  imagePicker: {
-    alignItems: 'center',
-    marginBottom: 15
-  },
-  imagePreview: {
-    width: '100%',
-    height: 200,
-    marginBottom: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: '#ccc',
-    borderWidth: 1
-  },
-  image: {
-    width: '100%',
-    height: '100%'
+import React, { Component } from 'react';
+import { View, Image, Button, StyleSheet } from 'react-native';
+import ImagePicker from 'react-native-image-picker';
+export default class ImgPicker extends Component {
+  state = {
+    avatarSource: null
   }
-});
+  selectImage = async () => {
+    ImagePicker.showImagePicker({ noData: true, mediaType: 'photo' }, (response) => {
+      console.log('Response = ', response);
 
-export default ImgPicker;
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+
+        // You can also display the image using data:
+        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+        this.setState({
+          avatarSource: response.uri,
+        });
+      }
+    });
+  }
+  render() {
+    return (
+      <View>
+        {
+          this.state.avatarSource && <Image />
+        }
+        <Button title='select Image' onPress={this.selectImage} />
+      </View>
+    );
+  }
+};

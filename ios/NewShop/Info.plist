@@ -61,11 +61,37 @@
 		<string>Arial-BoldMT.ttf</string>
 		<string>ArialMT.ttf</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>For choosing a photo.</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Let me use your media library</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Let me use bluetooth</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Let me use bluetooth</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Let me use your calendars</string>
 	<key>NSCameraUsageDescription</key>
-  	<string>YOUR TEXT</string>
+	<string>Let me use the camera</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Let me use your contacts</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Let me use FaceID</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Let me use your location, even in background</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Let me use your location, even in background</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Let me use your location when the app is opened</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Let me use the microphone</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Let me use your motion data</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Let me use your photo library</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Let me use your reminders</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Let me use speech recognition</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>For saving a photo.</string>
+    <string>would like to save photos to your photo gallery</string>
 </dict>
 </plist>
