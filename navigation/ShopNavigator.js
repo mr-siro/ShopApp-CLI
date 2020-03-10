@@ -102,6 +102,20 @@ const ShopNavigator = createDrawerNavigator({
             );
         }
     });
+const ProfileNavigator = createStackNavigator({
+    Prof: ProfileScreen
+},
+    {
+
+        defaultNavigationOptions: defaultNavOptions
+    });
+const NewsNavigator = createStackNavigator({
+    New: NewsScreen
+},
+    {
+
+        defaultNavigationOptions: defaultNavOptions
+    });
 const bottomApp = createBottomTabNavigator({
     Home: {
         screen: ShopNavigator,
@@ -115,7 +129,7 @@ const bottomApp = createBottomTabNavigator({
         }
     },
     News: {
-        screen: NewsScreen,
+        screen: NewsNavigator,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) =>
                 <Icon name={Platform.OS === 'android' ? "md-paper" : "ios-paper"}
@@ -125,7 +139,7 @@ const bottomApp = createBottomTabNavigator({
         }
     },
     Profile: {
-        screen: ProfileScreen,
+        screen: ProfileNavigator,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) =>
                 <Icon name={Platform.OS === 'android' ? "md-person" : "ios-person"}

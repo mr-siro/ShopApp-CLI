@@ -52,6 +52,9 @@ export default class ProfileScreen extends Component {
         );
     }
 };
+ProfileScreen.navigationOptions = {
+    headerTitle: 'Profile'
+};
 const styles = StyleSheet.create({
     screen: {
         flex: 1
