@@ -124,7 +124,7 @@ export const updatePost = (id, title, description, img) => {
             postData: {
                 title,
                 description,
-                imageUrl
+                img
             }
         });
     };
